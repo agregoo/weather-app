@@ -8,25 +8,15 @@ import DetailsScreen from "../screens/DetailsScreen";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigation() {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator>
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
 
-                <Stack.Screen
-                    name="Home"
-                    component={HomeScreen}
-                />
+        <Stack.Screen name="Details" component={DetailsScreen} />
 
-                <Stack.Screen
-                    name="Details"
-                    component={DetailsScreen}
-                />
-
-                <Stack.Screen
-                    name="Forecast"
-                    component={ForecastScreen}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+        <Stack.Screen name="Forecast" component={ForecastScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }

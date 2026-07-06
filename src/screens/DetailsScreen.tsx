@@ -7,7 +7,6 @@ export default function DetailsScreen({ navigation }: any) {
     <SafeAreaView className="flex-1 bg-sky-500">
       <View className="flex-1 px-6">
 
-        {/* ================= HEADER ================= */}
         <View className="flex-row items-center mt-4">
 
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -19,12 +18,11 @@ export default function DetailsScreen({ navigation }: any) {
           </TouchableOpacity>
 
           <Text className="text-white text-2xl font-bold ml-4">
-            Detalhes do Clima
+            Voltar a Home
           </Text>
 
         </View>
 
-        {/* ================= CLIMA ================= */}
 
         <View className="items-center mt-10">
 
@@ -48,7 +46,6 @@ export default function DetailsScreen({ navigation }: any) {
 
         </View>
 
-        {/* ================= CARD ================= */}
 
         <View className="bg-white rounded-3xl mt-10 p-6">
 
@@ -104,7 +101,6 @@ export default function DetailsScreen({ navigation }: any) {
 
         </View>
 
-        {/* ================= BOTÃO ================= */}
 
         <TouchableOpacity
           onPress={() => navigation.navigate("Forecast")}

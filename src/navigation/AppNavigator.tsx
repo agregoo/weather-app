@@ -18,13 +18,13 @@ export default function AppNavigation() {
                 />
 
                 <Stack.Screen
-                    name="Forecast"
-                    component={ForecastScreen}
+                    name="Details"
+                    component={DetailsScreen}
                 />
 
                 <Stack.Screen
-                    name="Details"
-                    component={DetailsScreen}
+                    name="Forecast"
+                    component={ForecastScreen}
                 />
             </Stack.Navigator>
         </NavigationContainer>

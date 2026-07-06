@@ -1,6 +1,8 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, Pressable, TextInput } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function HomeScreen({ navigation }: any) {
   return (
@@ -44,6 +46,13 @@ export default function HomeScreen({ navigation }: any) {
             Parcialmente Nublado
           </Text>
         </View>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Details")}
+          className="bg-white rounded-2xl py-4 mt-8 items-center"
+        >
+          <Text className="text-sky-600 font-bold text-lg">Ver detalhes</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

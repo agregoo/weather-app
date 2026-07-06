@@ -10,7 +10,14 @@ const Stack = createNativeStackNavigator();
 export default function AppNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          animation: "slide_from_right",
+          animationDuration: 250,
+          gestureEnabled: true,
+        }}
+      >
         <Stack.Screen name="Home" component={HomeScreen} />
 
         <Stack.Screen name="Details" component={DetailsScreen} />

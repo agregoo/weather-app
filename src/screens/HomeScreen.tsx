@@ -2,7 +2,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, Pressable, TextInput } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 export default function HomeScreen({ navigation }: any) {
   return (

@@ -2,8 +2,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, Pressable, TextInput } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
+import { useState } from "react";
 
 export default function HomeScreen({ navigation }: any) {
+  const [city, setCity] = useState("");
+
+  const handleSearch = () => {
+    console.log(city);
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-sky-500">
       <View className="flex-1 px-6">
@@ -25,13 +32,17 @@ export default function HomeScreen({ navigation }: any) {
           <TextInput
             placeholder="Digite uma cidade..."
             className="flex-1 ml-3 text-lg"
+            value={city}
+            onChangeText={setCity}
           />
         </View>
 
         <Pressable className="bg-blue-900 mt-5 rounded-2xl py-4 flex-row justify-center items-center">
           <Ionicons name="search" size={20} color="white" />
 
-          <Text className="text-white text-lg font-bold ml-2">
+          <Text
+          onPress={handleSearch} 
+          className="text-white text-lg font-bold ml-2">
             Buscar Clima
           </Text>
         </Pressable>

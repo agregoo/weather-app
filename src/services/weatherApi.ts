@@ -1,4 +1,4 @@
-const API_KEY = "chave";
+const API_KEY = process.env.EXPO_PUBLIC_API_KEY!;
 
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 

@@ -3,13 +3,25 @@ import { View, Text, Pressable, TextInput } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { useState } from "react";
+import { getWeather } from "../services/weatherApi";
 
 export default function HomeScreen({ navigation }: any) {
-  const [city, setCity] = useState("");
 
-  const handleSearch = () => {
-    console.log(city);
+  const [city, setCity] = useState("");
+  const [weather, setWeather] = useState<any>(null);
+
+  const handleSearch = async () => {
+    try {
+        const data = await getWeather(city);
+
+        setWeather(data);
+
+    } catch (error) {
+        console.log(error);
+    }
   };
+
+  const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
   return (
     <SafeAreaView className="flex-1 bg-sky-500">
@@ -48,12 +60,12 @@ export default function HomeScreen({ navigation }: any) {
         </Pressable>
 
         <View className="bg-white rounded-3xl p-6 mt-10">
-          <Text className="text-2xl font-bold text-center">Luanda</Text>
+          <Text className="text-2xl font-bold text-center"> {weather?.city ?? "cidade"} </Text>
 
-          <Text className="text-6xl font-bold text-center mt-4">24°</Text>
+          <Text className="text-6xl font-bold text-center mt-4"> {weather ? `${Math.round(weather.temperature)}°` : "--°"} </Text>
 
           <Text className="text-center text-gray-500 mt-3 text-lg">
-            Parcialmente Nublado
+            {weather?.description ?? "Nenhuma informação"}
           </Text>
         </View>
 

@@ -30,31 +30,46 @@ export default function DetailsScreen({ navigation }: any) {
 
         <View className="bg-white rounded-3xl mt-10 p-6">
           <View className="flex-row justify-between py-3">
-            <Text className="text-gray-500">Sensação térmica</Text>
+            <View className="flex-row items-center">
+              <Ionicons name="thermometer-outline" size={20} color="#0284c7" />
+              <Text className="text-gray-500 ml-2">Sensação Termica</Text>
+            </View>
 
             <Text className="font-bold">26°C</Text>
           </View>
 
           <View className="flex-row justify-between py-3">
-            <Text className="text-gray-500">Humidade</Text>
+            <View className="flex-row items-center">
+              <Ionicons name="water-outline" size={20} color="#0284c7" />
+              <Text className="text-gray-500 ml-2">Humidade</Text>
+            </View>
 
             <Text className="font-bold">82%</Text>
           </View>
 
           <View className="flex-row justify-between py-3">
-            <Text className="text-gray-500">Vento</Text>
+            <View className="flex-row items-center">
+              <Ionicons name="speedometer-outline" size={20} color="#0284c7" />
+              <Text className="text-gray-500 ml-2">Vento</Text>
+            </View>
 
             <Text className="font-bold">18 km/h</Text>
           </View>
 
           <View className="flex-row justify-between py-3">
-            <Text className="text-gray-500">Pressão</Text>
+            <View className="flex-row items-center">
+              <Ionicons name="analytics-outline" size={20} color="#0284c7" />
+              <Text className="text-gray-500 ml-2">Pressão</Text>
+            </View>
 
             <Text className="font-bold">1014 hPa</Text>
           </View>
 
           <View className="flex-row justify-between py-3">
-            <Text className="text-gray-500">Visibilidade</Text>
+            <View className="flex-row items-center">
+              <Ionicons name="eye-outline" size={20} color="#0284c7" />
+              <Text className="text-gray-500 ml-2">Visibilidade</Text>
+            </View>
 
             <Text className="font-bold">10 km</Text>
           </View>

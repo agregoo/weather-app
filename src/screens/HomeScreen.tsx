@@ -1,10 +1,15 @@
+import {
+  View,
+  Text,
+  Pressable,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, Pressable, TextInput } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { getWeather } from "../services/weatherApi";
-import { ActivityIndicator } from "react-native";
 
 export default function HomeScreen({ navigation }: any) {
   const [city, setCity] = useState("");
@@ -59,11 +64,13 @@ export default function HomeScreen({ navigation }: any) {
             value={city}
             onChangeText={setCity}
           />
+        </View>
+
+
 
           {error ? (
             <Text className="text-red-200 mt-3 text-center">{error}</Text>
-          ) : null}
-        </View>
+          ) : null};
 
         <Pressable
           onPress={handleSearch}
@@ -85,8 +92,7 @@ export default function HomeScreen({ navigation }: any) {
 
         <View className="bg-white rounded-3xl p-6 mt-10">
           <Text className="text-2xl font-bold text-center">
-            {" "}
-            {weather?.city ?? "cidade"}{" "}
+            {weather?.city ?? "cidade"}
           </Text>
 
           <Text className="text-6xl font-bold text-center mt-4">

@@ -1,8 +1,9 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 
-export default function DetailsScreen({ navigation }: any) {
+export default function DetailsScreen({ navigation, route }: any) {
+  const { weather } = route.params;
   return (
     <SafeAreaView className="flex-1 bg-sky-500">
       <View className="flex-1 px-6">
@@ -17,14 +18,23 @@ export default function DetailsScreen({ navigation }: any) {
         </View>
 
         <View className="items-center mt-10">
-          <Text className="text-sky-100 text-xl">Luanda</Text>
+          <Image
+            source={{
+              uri: `https://openweathermap.org/img/wn/${weather.icon}@4x.png`,
+            }}
+            className="w-40 h-40"
+          />
 
-          <Feather name="sun" size={90} color="white" />
+          <Text className="text-white text-4xl font-bold">{weather.city}</Text>
 
-          <Text className="text-white text-6xl font-bold mt-4">24°</Text>
+          <Text className="text-sky-100 text-lg mt-1">{weather.country}</Text>
 
-          <Text className="text-sky-100 text-xl mt-2">
-            Parcialmente Nublado
+          <Text className="text-white text-7xl font-extrabold mt-2">
+            {Math.round(weather.temperature)}°
+          </Text>
+
+          <Text className="text-white text-xl capitalize mt-3">
+            {weather.description}
           </Text>
         </View>
 
@@ -35,7 +45,7 @@ export default function DetailsScreen({ navigation }: any) {
               <Text className="text-gray-500 ml-2">Sensação Termica</Text>
             </View>
 
-            <Text className="font-bold">26°C</Text>
+            <Text className="font-bold">{Math.round(weather.feelsLike)}°</Text>
           </View>
 
           <View className="flex-row justify-between py-3">
@@ -44,7 +54,7 @@ export default function DetailsScreen({ navigation }: any) {
               <Text className="text-gray-500 ml-2">Humidade</Text>
             </View>
 
-            <Text className="font-bold">82%</Text>
+            <Text className="font-bold">{weather.humidity}%</Text>
           </View>
 
           <View className="flex-row justify-between py-3">
@@ -53,7 +63,7 @@ export default function DetailsScreen({ navigation }: any) {
               <Text className="text-gray-500 ml-2">Vento</Text>
             </View>
 
-            <Text className="font-bold">18 km/h</Text>
+            <Text className="font-bold">{weather.windSpeed} m/s</Text>
           </View>
 
           <View className="flex-row justify-between py-3">
@@ -62,17 +72,9 @@ export default function DetailsScreen({ navigation }: any) {
               <Text className="text-gray-500 ml-2">Pressão</Text>
             </View>
 
-            <Text className="font-bold">1014 hPa</Text>
+            <Text className="font-bold">{weather.pressure} hPa</Text>
           </View>
 
-          <View className="flex-row justify-between py-3">
-            <View className="flex-row items-center">
-              <Ionicons name="eye-outline" size={20} color="#0284c7" />
-              <Text className="text-gray-500 ml-2">Visibilidade</Text>
-            </View>
-
-            <Text className="font-bold">10 km</Text>
-          </View>
         </View>
 
         <TouchableOpacity

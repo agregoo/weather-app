@@ -12,7 +12,7 @@ export default function DetailsScreen({ navigation }: any) {
           </TouchableOpacity>
 
           <Text className="text-white text-2xl font-bold ml-4">
-            Voltar a Home
+            Detalhes do clima
           </Text>
         </View>
 
@@ -77,10 +77,12 @@ export default function DetailsScreen({ navigation }: any) {
 
         <TouchableOpacity
           onPress={() => navigation.navigate("Forecast")}
-          className="bg-blue-900 rounded-2xl py-4 mt-8"
+          className="bg-blue-900 rounded-2xl py-4 mt-8 flex-row justify-center items-center"
         >
-          <Text className="text-center text-white text-lg font-bold">
-            Ver previsão dos próximos dias
+          <Ionicons name="calendar-outline" size={22} color="white" />
+
+          <Text className="text-white text-lg font-bold ml-2">
+            Próximos dias
           </Text>
         </TouchableOpacity>
       </View>

@@ -106,10 +106,23 @@ export default function HomeScreen({ navigation }: any) {
           </Text>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Details")}
-          className="bg-white rounded-2xl py-4 mt-8 items-center"
+          disabled={!weather}
+          onPress={() =>
+            navigation.navigate("Details", {
+              weather,
+            })
+          }
+          className={`rounded-2xl py-4 mt-8 items-center ${
+            weather ? "bg-white" : "bg-gray-300"
+          }`}
         >
-          <Text className="text-sky-600 font-bold text-lg">Ver detalhes</Text>
+          <Text
+            className={`text-lg font-bold ${
+              weather ? "text-sky-600" : "text-gray-500"
+            }`}
+          >
+            Ver detalhes
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

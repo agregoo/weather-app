@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather, Ionicons } from "@expo/vector-icons";
@@ -54,7 +55,6 @@ export default function HomeScreen({ navigation }: any) {
             Consulte o clima de qualquer cidade
           </Text>
         </View>
-
         <View className="flex-row items-center bg-white rounded-2xl px-4 py-3 mt-12">
           <Feather name="search" size={22} color="#6B7280" />
 
@@ -65,13 +65,10 @@ export default function HomeScreen({ navigation }: any) {
             onChangeText={setCity}
           />
         </View>
-
-
-
-          {error ? (
-            <Text className="text-red-200 mt-3 text-center">{error}</Text>
-          ) : null};
-
+        {error ? (
+          <Text className="text-red-200 mt-3 text-center">{error}</Text>
+        ) : null}
+        ;
         <Pressable
           onPress={handleSearch}
           disabled={loading}
@@ -89,22 +86,28 @@ export default function HomeScreen({ navigation }: any) {
             </>
           )}
         </Pressable>
-
         <View className="bg-white rounded-3xl p-6 mt-10">
           <Text className="text-2xl font-bold text-center">
             {weather?.city ?? "cidade"}
           </Text>
 
+          {weather && (
+            <Image
+              source={{
+                uri: `https://openweathermap.org/img/wn/${weather.icon}@2x.png`,
+              }}
+              className="w-28 h-28 self-center"
+            />
+          )}
+
           <Text className="text-6xl font-bold text-center mt-4">
-            {" "}
-            {weather ? `${Math.round(weather.temperature)}°` : "--°"}{" "}
+            {weather ? `${Math.round(weather.temperature)}°` : "--°"}
           </Text>
 
           <Text className="text-center text-gray-500 mt-3 text-lg">
             {weather?.description ?? "Nenhuma informação"}
           </Text>
         </View>
-
         <TouchableOpacity
           onPress={() => navigation.navigate("Details")}
           className="bg-white rounded-2xl py-4 mt-8 items-center"

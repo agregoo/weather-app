@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { Feather, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function DetailsScreen({ navigation, route }: any) {
   const { weather } = route.params;

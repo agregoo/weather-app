@@ -39,8 +39,6 @@ export default function HomeScreen({ navigation }: any) {
     }
   };
 
-  const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
-
   return (
     <SafeAreaView className="flex-1 bg-sky-500">
       <View className="flex-1 px-6">
@@ -68,7 +66,6 @@ export default function HomeScreen({ navigation }: any) {
         {error ? (
           <Text className="text-red-200 mt-3 text-center">{error}</Text>
         ) : null}
-        ;
         <Pressable
           onPress={handleSearch}
           disabled={loading}

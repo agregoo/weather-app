@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Image,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather, Ionicons } from "@expo/vector-icons";
@@ -24,12 +26,17 @@ export default function HomeScreen({ navigation }: any) {
       setError("Digite o nome de uma cidade.");
       return;
     }
+    
+    const cleanedCity = city.trim();
+    
+    Keyboard.dismiss();
 
     try {
       setLoading(true);
       setError("");
 
-      const data = await getWeather(city);
+    
+    const data = await getWeather(cleanedCity);
 
       setWeather(data);
     } catch (error) {
@@ -39,7 +46,9 @@ export default function HomeScreen({ navigation }: any) {
     }
   };
 
+
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <SafeAreaView className="flex-1 bg-sky-500">
       <View className="flex-1 px-6">
         <View className="items-center mt-10">
@@ -58,9 +67,15 @@ export default function HomeScreen({ navigation }: any) {
 
           <TextInput
             placeholder="Digite uma cidade..."
+            placeholderTextColor="#9CA3AF"
             className="flex-1 ml-3 text-lg"
             value={city}
-            onChangeText={setCity}
+            onChangeText={(text) => {
+  setCity(text);
+  setError("");
+}}
+            onSubmitEditing={handleSearch}
+            returnKeyType="search"
           />
         </View>
         {error ? (
@@ -68,8 +83,10 @@ export default function HomeScreen({ navigation }: any) {
         ) : null}
         <Pressable
           onPress={handleSearch}
-          disabled={loading}
-          className="bg-blue-900 mt-5 rounded-2xl py-4 flex-row justify-center items-center"
+          disabled={loading || !city.trim()}
+          className={`mt-5 rounded-2xl py-4 flex-row justify-center items-center ${
+            loading || !city.trim() ? "bg-gray-400" : "bg-blue-900"
+          }`}
         >
           {loading ? (
             <ActivityIndicator color="white" />
@@ -126,5 +143,6 @@ export default function HomeScreen({ navigation }: any) {
         </TouchableOpacity>
       </View>
     </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }

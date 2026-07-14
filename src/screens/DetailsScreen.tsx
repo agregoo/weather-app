@@ -78,7 +78,10 @@ export default function DetailsScreen({ navigation, route }: any) {
         </View>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("Forecast")}
+          onPress={() => navigation.navigate("Forecast", {
+            city: weather.city,
+          }
+          )}
           className="bg-blue-900 rounded-2xl py-4 mt-8 flex-row justify-center items-center"
         >
           <Ionicons name="calendar-outline" size={22} color="white" />

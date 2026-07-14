@@ -54,6 +54,19 @@ export default function ForecastScreen({ navigation, route }: any) {
       </SafeAreaView>
     );
   }
+
+  const dailyForecast = forecast.filter((item) =>
+  item.dt_txt.includes("12:00:00")
+);
+
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString("pt-PT", {
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+  });
+};
+
   return (
     <SafeAreaView className="flex-1 bg-sky-500">
       <View className="flex-row items-center px-5 py-4">
@@ -71,7 +84,7 @@ export default function ForecastScreen({ navigation, route }: any) {
       </View>
 
       <FlatList<ForecastItem>
-        data={forecast}
+        data={dailyForecast}
         keyExtractor={(item) => item.dt_txt}
         className="mt-8 px-5"
         renderItem={({ item }) => (
@@ -86,16 +99,15 @@ export default function ForecastScreen({ navigation, route }: any) {
               />
 
               <View className="ml-3">
-                <Text className="text-lg font-semibold">
+                <Text className="text-lg font-semibold capitalize text-gray-600">
                   {item.weather[0].description}
                 </Text>
 
-                <Text className="text-gray-500">{item.dt_txt}</Text>
+                <Text className="text-gray-500">{formatDate(item.dt_txt)}</Text>
               </View>
             </View>
 
-            {/* Lado direito */}
-            <Text className="text-3xl font-bold">
+            <Text className="text-4xl text-sky-600">
               {Math.round(item.main.temp)}°
             </Text>
           </View>

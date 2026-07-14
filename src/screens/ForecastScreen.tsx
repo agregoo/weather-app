@@ -43,14 +43,14 @@ export default function ForecastScreen({ navigation, route }: any) {
   };
 
   const onRefresh = async () => {
-  try {
-    setRefreshing(true);
+    try {
+      setRefreshing(true);
 
-    await loadForecast();
-  } finally {
-    setRefreshing(false);
-  }
-};
+      await loadForecast();
+    } finally {
+      setRefreshing(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -69,25 +69,38 @@ export default function ForecastScreen({ navigation, route }: any) {
   }
 
   const dailyForecast = forecast.filter((item) =>
-  item.dt_txt.includes("12:00:00")
-);
+    item.dt_txt.includes("12:00:00"),
+  );
 
-const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString("pt-PT", {
-    weekday: "long",
-    day: "numeric",
-    month: "short",
-  });
-};
+  const formatDate = (date: string) => {
+    return new Date(date).toLocaleDateString("pt-PT", {
+      weekday: "long",
+      day: "numeric",
+      month: "short",
+    });
+  };
 
   return (
     <SafeAreaView className="flex-1 bg-sky-500">
-      <View className="flex-row items-center px-5 py-4">
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+      <View className="flex-row items-center justify-between px-5 py-4">
+
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          className="flex-row items-center"
+        >
           <Feather name="arrow-left" size={28} color="white" />
+
+          <Text className="text-white text-2xl font-bold ml-3">Previsão</Text>
         </TouchableOpacity>
 
-        <Text className="text-white text-2xl font-bold ml-4">Previsão</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Home")}
+          className="flex-row items-center"
+        >
+          <Feather name="home" size={24} color="white" />
+
+          <Text className="text-white ml-2 font-semibold">Home</Text>
+        </TouchableOpacity>
       </View>
 
       <View className="items-center mt-2">
@@ -100,10 +113,7 @@ const formatDate = (date: string) => {
         data={dailyForecast}
         keyExtractor={(item) => item.dt_txt}
         refreshControl={
-          <RefreshControl
-          refreshing={refreshing}
-          onRefresh={onRefresh}
-          />
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         className="mt-8 px-5"
         renderItem={({ item }) => (

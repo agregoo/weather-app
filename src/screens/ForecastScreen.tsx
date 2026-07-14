@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Image,
+  RefreshControl,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
@@ -20,6 +21,8 @@ export default function ForecastScreen({ navigation, route }: any) {
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState("");
+
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     loadForecast();
@@ -38,6 +41,16 @@ export default function ForecastScreen({ navigation, route }: any) {
       setLoading(false);
     }
   };
+
+  const onRefresh = async () => {
+  try {
+    setRefreshing(true);
+
+    await loadForecast();
+  } finally {
+    setRefreshing(false);
+  }
+};
 
   if (loading) {
     return (
@@ -86,6 +99,12 @@ const formatDate = (date: string) => {
       <FlatList<ForecastItem>
         data={dailyForecast}
         keyExtractor={(item) => item.dt_txt}
+        refreshControl={
+          <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+          />
+        }
         className="mt-8 px-5"
         renderItem={({ item }) => (
           <View className="bg-white rounded-2xl p-5 mb-4 flex-row justify-between items-center">
